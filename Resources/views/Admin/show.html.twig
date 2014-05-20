@@ -4,13 +4,21 @@
 {% block content %}
 <h1>{{ action_title }}</h1>
 
+{% if toolbar is defined  %}
+    {% include 'AdminBundle:Admin:toolbar.html.twig'
+    with {'toolbar': toolbar} only %}
+{% endif %}
+
 <table class="table table-bordered table-striped record_properties">
     <tbody>
         {% for field,label in show_fields %}
-            <tr>
-                <th>{{label | trans}}</th>
-                <td>{{ attribute(entity,field) }}</td>
-            </tr>
+            {% if show_images[field] is defined %}
+                {% include 'AdminBundle:Admin:show_image.html.twig'
+                    with {'label': label, 'value':  vich_uploader_asset(entity,field), 'thumb': show_images[field]} only %}
+            {% else %}
+                {% include 'AdminBundle:Admin:show_default.html.twig'
+                    with {'label': label, 'value': attribute(entity,field) } only %}
+            {% endif %}
         {% endfor %}
         
     </tbody>

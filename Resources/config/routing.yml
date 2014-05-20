@@ -1,0 +1,18 @@
+#contact:
+#    resource: "@ContactBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+
+_admin_about:
+    resource: "@AdminBundle/Controller/AboutController.php"
+    type:     annotation
+    prefix:   /
+
+
+_admin_def:
+    resource: "@AdminBundle/Controller/DefaultController.php"
+    type:     annotation
+    prefix:   /
+
+

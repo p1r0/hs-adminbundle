@@ -3,15 +3,10 @@
 namespace Heapstersoft\Base\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @Route("/admin")
- * 
- */
 abstract class AdminController extends Controller
 {
     protected $bundleName = null;
@@ -20,19 +15,27 @@ abstract class AdminController extends Controller
     protected $actionTitles = array();
     protected $listFields = array();
     protected $showFields = array();
+    protected $imageFields = array();
     protected $routePrefix = '';
+    protected $toolbar = array();
+    protected $hideDefaultToolbar = false;
 
     public function __construct()
     {
         $this->listFields = $this->setupListFields();
         $this->showFields = $this->setupShowFields();
+        $this->imageFields = $this->setupImageFields();
     }
     
     /**
      * @Secure(roles="ROLE_ADMIN")
      */
     public function indexAction()
-    { 
+    {
+        $routes = $this->getAllRoutes();
+        $toolbar = $this->createToolbar(array(
+            ucwords(strtolower('New '.$this->entityName)) => $this->generateUrl($routes['new_route'])
+        ));
         $templateString = $this->resolveTemplateString('index');
         $actionTitle = $this->getActionTitle('list', 'List');
         $em = $this->getDoctrine()->getManager();
@@ -59,8 +62,9 @@ abstract class AdminController extends Controller
             $templateString, 
             array('pagination'=>$pagination,
                   'action_title'=>$actionTitle,
+                  'toolbar'=>$toolbar,
                   'listFields'=>$this->listFields) +
-            $this->getAllRoutes()
+                  $routes
         );
     }
     
@@ -198,7 +202,8 @@ abstract class AdminController extends Controller
             array('entity' => $entity,
                   'show_fields'=>$this->showFields,
                   'action_title'=>$actionTitle,
-                  'delete_form'=>$deleteForm->createView()) +
+                  'delete_form'=>$deleteForm->createView(),
+                  'show_images'=>$this->imageFields) +
             $this->getAllRoutes()
         );
     }
@@ -289,10 +294,16 @@ abstract class AdminController extends Controller
     {
         return array('id'=>'Id');
     }
+
+    protected function setupImageFields()
+    {
+        return array();
+    }
     
     protected function getAllRoutes()
     {
         $listRoute = '_admin_'.strtolower($this->bundleName).$this->routePrefix.'_index';
+        $newRoute = '_admin_'.strtolower($this->bundleName).$this->routePrefix.'_new';
         $createRoute = '_admin_'.strtolower($this->bundleName).$this->routePrefix.'_create';
         $showRoute = '_admin_'.strtolower($this->bundleName).$this->routePrefix.'_show';
         $deleteRoute = '_admin_'.strtolower($this->bundleName).$this->routePrefix.'_delete';
@@ -304,6 +315,7 @@ abstract class AdminController extends Controller
                     'list_route'=>$listRoute,
                     'edit_route'=>$editRoute,
                     'show_route'=>$showRoute,
+                    'new_route'=>$newRoute,
                     'create_route'=>$createRoute,
                   
         );
@@ -319,8 +331,18 @@ abstract class AdminController extends Controller
 
         return $t;
     }
-    
-    protected function createDeleteForm($id)
+
+    protected function createToolbar(array $default = array())
+    {
+        if(!$this->hideDefaultToolbar)
+        {
+            $this->toolbar = array_merge($default, $this->toolbar);
+        }
+
+        return $this->toolbar;
+    }
+
+    private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')

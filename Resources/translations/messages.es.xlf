@@ -6,10 +6,6 @@
                 <source>Welcome</source>
                 <target>Bienvenido</target>
             </trans-unit>
-            <trans-unit id="2">
-                <source>Welcome to the Admin!</source>
-                <target>Bienvenido al panel de administración!</target>
-            </trans-unit>
             <trans-unit id="1000">
                 <source>Created Sucessfully!</source>
                 <target>Creado con éxito!</target>
@@ -49,11 +45,7 @@
                 <source>Back to the list</source>
                 <target>Volver al listado</target>
             </trans-unit>
-            <trans-unit id="2002">
-                <source>Create</source>
-                <target>Crear</target>
-            </trans-unit>
-
+            
             
             <!-- Misc -->
             <trans-unit  id="10000">

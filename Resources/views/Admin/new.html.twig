@@ -2,19 +2,24 @@
 
 
 {% block content %}
-<h1>{{ action_title | trans() }}</h1>
+<h1>{{ action_title }}</h1>
+
+{% if toolbar is defined  %}
+    {% include 'AdminBundle:Admin:toolbar.html.twig'
+    with {'toolbar': toolbar} only %}
+{% endif %}
 
 <form action="{{ path(create_route) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit">{{ 'Create' | trans() }}</button>
+        <button type="submit">Create</button>
     </p>
 </form>
 
 <ul class="record_actions">
     <li>
         <a href="{{ path(list_route) }}">
-            {{ 'Back to the list' | trans }}
+            Back to the list
         </a>
     </li>
 </ul>

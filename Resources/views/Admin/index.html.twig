@@ -3,11 +3,16 @@
 {% block content %}
 <h1>{{ action_title }}</h1>
 
+{% if toolbar is defined  %}
+    {% include 'AdminBundle:Admin:toolbar.html.twig'
+        with {'toolbar': toolbar} only %}
+{% endif %}
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
             {% for field,label in listFields %}
-                <th>{{ label | trans}}</th>
+                <th{% if pagination.isSorted('x.' ~ field) %} class="list_th_sorted"{% endif %}>{{ knp_pagination_sortable(pagination, label|trans, 'x.' ~ field) }}</th>
             {% endfor %}
             <th>{% trans %}Actions{% endtrans %}</th>
         </tr>

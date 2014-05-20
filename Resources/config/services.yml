@@ -1,0 +1,3 @@
+services:
+  heapstersoft.admin.vichnamerservice:
+    class: Heapstersoft\Base\AdminBundle\Vich\IdNamer

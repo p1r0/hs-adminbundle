@@ -1,0 +1,20 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block content %}
+<h1>About Admin</h1>
+
+
+<table class="table table-bordered table-striped record_properties">
+    <tbody>
+        <tr>
+            <th>{% trans %}Admin Panel Version{% endtrans %}</th>
+            <td>0.2.1</td>
+        </tr>
+        <tr>
+            <th>{% trans %}PHP Version{% endtrans %}</th>
+            <td>{{ phpversion }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
