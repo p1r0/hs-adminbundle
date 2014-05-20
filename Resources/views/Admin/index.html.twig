@@ -1,0 +1,38 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block content %}
+<h1>{{ action_title }}</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            {% for field,label in listFields %}
+                <th>{{ label | trans}}</th>
+            {% endfor %}
+            <th>{% trans %}Actions{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entity in pagination %}
+        <tr>
+            {% for field in listFields|keys %}
+            <td>{{ attribute(entity, field) }}</td>
+
+            
+            
+            {% endfor %}
+            
+            <td>
+                <a href="{{ path(edit_route, {id:entity.id}) }}">{% trans %}Edit{% endtrans %}</a> |
+                <a href="{{ path(delete_route, {id:entity.id}) }}">{% trans %}Delete{% endtrans %}</a> |
+                <a href="{{ path(show_route, {id:entity.id}) }}">{% trans %}View{% endtrans %}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{{ knp_pagination_render(pagination) }}
+
+{% endblock %}
+

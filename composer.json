@@ -1,0 +1,21 @@
+{
+    "name": "p1r0/hs-adminbundle",
+    "description": "Heapstersoft Admin Bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tabaré Caorsi",
+            "email": "tabare@heapstersoft.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Heapstersoft\\Base\\AdminBundle\\": ""
+        }
+    },
+    "target-dir": "Heapstersoft/Base/AdminBundle",
+    "require":{
+        "p1r0/hs-/userbundle":"0.3.*"
+    }
+}

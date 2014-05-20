@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Welcome</source>
+                <target>Bienvenido</target>
+            </trans-unit>
+            <trans-unit id="1000">
+                <source>Created Sucessfully!</source>
+                <target>Creado con éxito!</target>
+            </trans-unit>
+            <trans-unit id="1001">
+                <source>Your changes were saved!</source>
+                <target>Los cambios fueron guardos!</target>
+            </trans-unit>
+            <trans-unit id="1002">
+                <source>Deleted succesfully!</source>
+                <target>Borrado con éxito!</target>
+            </trans-unit>
+             
+            <trans-unit id="1100">
+                <source>Edit</source>
+                <target>Modificar</target>
+            </trans-unit>
+            <trans-unit id="1102">
+                <source>Delete</source>
+                <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="1103">
+                <source>View</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="1104">
+                <source>Actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            
+            <!-- Forms -->
+            <trans-unit id="2000">
+                <source>Update</source>
+                <target>Actualizar</target>
+            </trans-unit>
+            <trans-unit id="2001">
+                <source>Back to the list</source>
+                <target>Volver al listado</target>
+            </trans-unit>
+            
+            
+            <!-- Misc -->
+            <trans-unit  id="10000">
+                <source>List</source>
+                <target>Listado</target>
+            </trans-unit>
+            <trans-unit  id="10001">
+                <source>New</source>
+                <target>Nuevo</target>
+            </trans-unit>
+            <trans-unit  id="10002">
+                <source>Dashboard</source>
+                <target>Inicio</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
