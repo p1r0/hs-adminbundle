@@ -16,6 +16,6 @@
     },
     "target-dir": "Heapstersoft/Base/AdminBundle",
     "require":{
-        "p1r0/hs-/userbundle":"0.3.*"
+        "p1r0/hs-userbundle":"0.3.*"
     }
 }
