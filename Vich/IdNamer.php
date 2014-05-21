@@ -2,6 +2,8 @@
 
 namespace Heapstersoft\Base\AdminBundle\Vich;
 
+use Vich\UploaderBundle\Mapping\PropertyMapping;
+
 /**
  * Description of IdNamer
  *
@@ -9,7 +11,7 @@ namespace Heapstersoft\Base\AdminBundle\Vich;
  */
 class IdNamer implements \Vich\UploaderBundle\Naming\NamerInterface
 {
-    public function name($obj, $field)
+    public function name($obj, PropertyMapping $mapping)
     {
         $newFname = md5(uniqid().$obj->getId()).".".$obj->getImageObj()->guessExtension();
         return $newFname;
