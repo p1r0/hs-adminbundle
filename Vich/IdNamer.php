@@ -17,5 +17,3 @@ class IdNamer implements \Vich\UploaderBundle\Naming\NamerInterface
         return $newFname;
     }
 }
-
-?>
